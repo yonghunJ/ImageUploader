@@ -1,3 +1,4 @@
+import React from "react";
 import AWS from "aws-sdk"
 
 const ImageUpload = ({ setImageLink }) => {
@@ -10,16 +11,15 @@ const ImageUpload = ({ setImageLink }) => {
 
   const handleFileInput = e => {
     const file = e.target.files[0]
-    console.log(file)
 
-  const upload = new AWS.S3.ManagedUpload({
+    const upload = new AWS.S3.ManagedUpload({
     params: {
       Bucket: 'heyboss-component-library-images',
       Key:  file.name,
       Body: file,
+      ContentType: file?.type,
     },
   })
-
   const promise = upload.promise()
 
   promise.then(
@@ -36,7 +36,6 @@ const ImageUpload = ({ setImageLink }) => {
 
   return (
     <>
-      UPLOAD IMAGE TO AWS
       <input type="file" id="upload" className="image-upload" onChange = {handleFileInput} />
       <label htmlFor="upload" className="image-upload-wrapper"></label>
     </>

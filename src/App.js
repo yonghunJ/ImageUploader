@@ -14,7 +14,7 @@ function App() {
       <header className="App-header">
         <ImageUpload 
           setImageLink={setLoadImageLink}
-        />  
+        />
       </header>
       <div>
         <input 
@@ -27,9 +27,11 @@ function App() {
       <div>
         IMAGE LINK: {loadImageLink === '' ? '' : `https://heyboss-component-library-images.s3.amazonaws.com/${loadImageLink}`}
       </div>
+      {`Image -> `}
       <img 
         alt=''
         className="profile-img"
+        style={{"height":"32px", "width": "32px"}}
         src={`https://heyboss-component-library-images.s3.amazonaws.com/${loadImageLink}`}/>
     </div>
   );
